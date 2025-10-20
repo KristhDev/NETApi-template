@@ -10,6 +10,12 @@ export class RequestContextDto {
         public readonly headers?: object,
     ) {}
 
+    /**
+     * Creates a request context from a request.
+     *
+     * @param {Request} req - The request.
+     * @returns {RequestContextDto} The request context.
+     */
     public static fromRequest(req: Request): RequestContextDto {
         return new RequestContextDto(
             req.method,
@@ -21,6 +27,11 @@ export class RequestContextDto {
         );
     }
 
+    /**
+     * Converts the request context to a JSON object.
+     *
+     * @returns {object} The request context as a JSON object.
+     */
     public toJSON() {
         return {
             ip: this.ip,

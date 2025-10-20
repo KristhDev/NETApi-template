@@ -1,7 +1,9 @@
 import pino, { Logger, ThreadStream, TransportTargetOptions } from 'pino';
 
+/* Contracts */
 import { LoggerAdapterContract } from '@domain/contracts/adapters';
 
+/* Interfaces */
 import { CreateFileTargetOptions, LoggerAdapterOptions } from '@infrastructure/interfaces';
 
 export class LoggerAdapter implements LoggerAdapterContract {
@@ -22,6 +24,11 @@ export class LoggerAdapter implements LoggerAdapterContract {
         this.logger = pino(transport);
     }
 
+    /**
+     * Creates a console target for the logger.
+     *
+     * @returns {TransportTargetOptions} The console target.
+     */
     private createConsoleTarget(): TransportTargetOptions {
         return {
             target: 'pino-pretty',
@@ -34,6 +41,12 @@ export class LoggerAdapter implements LoggerAdapterContract {
         }
     }
 
+    /**
+     * Creates a file target for the logger.
+     *
+     * @param {CreateFileTargetOptions} options - The options for the file target.
+     * @returns {TransportTargetOptions} The file target.
+     */
     private createFileTarget(options: CreateFileTargetOptions): TransportTargetOptions {
         let fileName = options.logFileName;
 
@@ -50,6 +63,12 @@ export class LoggerAdapter implements LoggerAdapterContract {
         }
     }
 
+    /**
+     * Creates a transport for the logger.
+     *
+     * @param {Required<LoggerAdapterOptions>} options - The options for the transport.
+     * @returns {ThreadStream} The transport.
+     */
     private createTransport(options: Required<LoggerAdapterOptions>): ThreadStream {
         const fileTarget = this.createFileTarget({
             logFileName: options.logFileName,
@@ -67,10 +86,22 @@ export class LoggerAdapter implements LoggerAdapterContract {
         return pino.transport({ targets });
     }
 
+    /**
+     * Logs an error message.
+     *
+     * @param {string} message - The error message.
+     * @param {Record<string, any>} [context] - The context.
+     */
     public error(message: string, context?: Record<string, any>): void {
         this.logger.error(context, message);
     }
 
+    /**
+     * Logs an info message.
+     *
+     * @param {string} message - The info message.
+     * @param {Record<string, any>} [context] - The context.
+     */
     public info(message: string, context?: Record<string, any>): void {
         this.logger.info(context, message);
     }
