@@ -13,6 +13,7 @@
   "author": "KristhDev",
   "license": "MIT",
   "dependencies": {
+    "@scalar/express-api-reference": "^0.8.22",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "env-var": "^7.5.0",
