@@ -2,7 +2,7 @@ import pino, { Logger, ThreadStream, TransportTargetOptions } from 'pino';
 
 import { LoggerAdapterContract } from '@domain/contracts/adapters';
 
-import { LoggerAdapterOptions } from '@infrastructure/interfaces';
+import { CreateFileTargetOptions, LoggerAdapterOptions } from '@infrastructure/interfaces';
 
 export class LoggerAdapter implements LoggerAdapterContract {
     private readonly logger: Logger;
@@ -10,8 +10,9 @@ export class LoggerAdapter implements LoggerAdapterContract {
     private readonly defaultOptions: Required<LoggerAdapterOptions> = {
         logFileName: 'application',
         logsDir: 'logs',
+        writeLogsToConsole: true,
         writeLogsToFile: true,
-        writeLogsToConsole: true
+        writeLogsFilePerDay: false
     };
 
     public constructor(options?: LoggerAdapterOptions) {
@@ -33,18 +34,29 @@ export class LoggerAdapter implements LoggerAdapterContract {
         }
     }
 
-    private createFileTarget(logFileName: string, logsDir: string): TransportTargetOptions {
+    private createFileTarget(options: CreateFileTargetOptions): TransportTargetOptions {
+        let fileName = options.logFileName;
+
+        if (options.writeLogsFilePerDay) {
+            fileName += `-${ new Date().toISOString().split('T')[0] }`;
+        }
+
         return {
             target: 'pino/file',
             options: {
-                destination: `${ logsDir }/${ logFileName }.log`,
+                destination: `${ options.logsDir }/${ fileName }.log`,
                 mkdir: true
             }
         }
     }
 
     private createTransport(options: Required<LoggerAdapterOptions>): ThreadStream {
-        const fileTarget = this.createFileTarget(options.logFileName, options.logsDir);
+        const fileTarget = this.createFileTarget({
+            logFileName: options.logFileName,
+            logsDir: options.logsDir,
+            writeLogsFilePerDay: options.writeLogsFilePerDay
+        });
+
         const consoleTarget = this.createConsoleTarget();
 
         const targets: TransportTargetOptions[] = [];
