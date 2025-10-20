@@ -4,11 +4,16 @@ import cors from 'cors';
 /* Config */
 import { env } from '@config/env';
 
+/* Contracts */
+import { LoggerAdapterContract } from '@domain/contracts/adapters';
+
 class Server {
     private readonly port: number;
     private app: Application;
 
-    public constructor() {
+    public constructor(
+        private readonly loggerAdapter: LoggerAdapterContract
+    ) {
         this.port = env.APP_PORT;
         this.app = express();
     }
@@ -24,7 +29,7 @@ class Server {
 
     public listen(): void {
         this.app.listen(this.port, () => {
-            console.log(`Server running on port ${this.port}`);
+            this.loggerAdapter.info(`Server running on port ${ this.port }`);
         });
     }
 }
