@@ -8,7 +8,8 @@ moduleAlias.addAliases({
     '@infrastructure': __dirname + '/src/infrastructure',
     '@locales': __dirname + '/src/presentation/locales',
     '@package': __dirname + '/package.json',
-    '@server': __dirname + '/src/presentation/server'
+    '@server': __dirname + '/src/presentation/server',
+    '@test-setup': __dirname + '/jest.setup.ts'
 });
 
 moduleAlias();
