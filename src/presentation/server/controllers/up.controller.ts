@@ -1,5 +1,8 @@
 import { Request, Response } from 'express';
 
+/* Constants */
+import { serverMessages } from '@application/constants';
+
 /* Contracts */
 import { BaseController } from './base.controller';
 
@@ -22,6 +25,7 @@ export class UpController extends BaseController {
      *         $ref: '#/components/responses/InternalServerErrorResponse'
      */
     public handle(req: Request, res: Response): void {
-        this.jsonResponse.success(res, { message: 'API is up and running' });
+        const message = this.translationAdapter.translate(serverMessages.HEALTH_CHECK);
+        this.jsonResponse.success(res, { message });
     }
 }
