@@ -1,11 +1,15 @@
 import { Request, Response } from 'express';
 
+/* Dependencies */
 import { translationAdapter } from '@config/di';
 
+/* Constants */
 import { httpStatus } from '@application/constants';
 
+/* Contracts */
 import { TranslationAdapterContract } from '@domain/contracts/adapters';
 
+/* Utils */
 import { JsonResponseUtil } from '@server/utils';
 
 /**

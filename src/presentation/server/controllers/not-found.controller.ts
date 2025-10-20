@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 
+/* Contracts */
 import { BaseController } from './base.controller';
 
 export class NotFoundController extends BaseController {
