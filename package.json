@@ -9,7 +9,10 @@
     "docs:generate-openapi:json": "rimraf docs/api/openapi.json && ts-node-dev --transpile-only --clear ./src/scripts/docs/generate-openapi-json.ts",
     "docs:generate-openapi:yaml": "rimraf docs/api/openapi.yaml && ts-node-dev --transpile-only --clear ./src/scripts/docs/generate-openapi-yaml.ts",
     "start": "node ./dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:coverage": "jest --runInBand --coverage",
+    "test:e2e": "jest --runInBand --testMatch **/tests/e2e/**/*.test.ts",
+    "test:watch": "jest --runInBand --watch",
+    "test": "jest --runInBand"
   },
   "keywords": [],
   "author": "KristhDev",
@@ -30,13 +33,18 @@
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
     "@types/js-yaml": "^4.0.9",
     "@types/module-alias": "^2.0.4",
     "@types/node": "^24.8.1",
+    "@types/supertest": "^6.0.3",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.8",
+    "jest": "^30.2.0",
     "pino-pretty": "^13.1.2",
     "rimraf": "^6.0.1",
+    "supertest": "^7.1.4",
+    "ts-jest": "^29.4.5",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.3"
   }
