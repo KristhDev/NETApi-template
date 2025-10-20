@@ -2,8 +2,10 @@ import { Router } from 'express';
 import swaggerUi from 'swagger-ui-express';
 import scalar from '@scalar/express-api-reference';
 
+/* Swagger */
 import swaggerSpec from '@config/swagger';
 
+/* Env */
 import { env } from '@config/env';
 
 const docsRouter: Router = Router();
