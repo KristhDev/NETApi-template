@@ -4,6 +4,9 @@ import path from 'path';
 import { env } from '@config/env';
 import swaggerSpec from '@config/swagger';
 
+/* Constants */
+import { scriptMessages } from '@application/constants';
+
 /* Contracts */
 import { FileSystemAdapterContract, LoggerAdapterContract, YamlAdapterContract } from '@domain/contracts/adapters';
 import { OpenApiFacadeContract } from '@domain/contracts/facedes/docs';
@@ -25,21 +28,21 @@ export class OpenApiFacade implements OpenApiFacadeContract {
      */
     public async generateOpenApiJsonFile(): Promise<void> {
         try {
-            this.loggerAdapter.info('Generating OpenAPI JSON file...');
+            this.loggerAdapter.info(scriptMessages.GENERATE_OPEN_API_JSON_FILE);
 
-            this.loggerAdapter.info('Creating directory if it does not exist...');
+            this.loggerAdapter.info(scriptMessages.CREATE_DIRECTORY_IF_NOT_EXISTS);
             const dirPath = `${ process.cwd() }/${ env.SWAGGER_OPEN_API_FILE_DIR }`;
             await this.fileSystemAdapter.mkdirIfNotExists(dirPath);
 
-            this.loggerAdapter.info('Writing file...');
+            this.loggerAdapter.info(scriptMessages.WRITE_FILE);
             const filePath = path.join(dirPath, `${ env.SWAGGER_OPEN_API_FILE_NAME }.json`);
             await this.fileSystemAdapter.writeFile(filePath, JSON.stringify(swaggerSpec, null, 2));
 
-            this.loggerAdapter.info('OpenAPI JSON file generated successfully');
+            this.loggerAdapter.info(scriptMessages.OPENAPI_JSON_FILE_GENERATED_SUCCESSFULLY);
         } 
         catch (error) {
             const errorData = (error as BaseError<{}>).toJSON(); 
-            this.loggerAdapter.error('Failed to generate OpenAPI JSON file', errorData);
+            this.loggerAdapter.error(scriptMessages.FAILED_TO_GENERATE_OPENAPI_JSON_FILE, errorData);
         }
     }
 
@@ -50,23 +53,23 @@ export class OpenApiFacade implements OpenApiFacadeContract {
      */
     public async generateOpenApiYamlFile(): Promise<void> {
         try {
-            this.loggerAdapter.info('Generating OpenAPI YAML file...');
+            this.loggerAdapter.info(scriptMessages.GENERATE_OPEN_API_YAML_FILE);
 
-            this.loggerAdapter.info('Creating directory if it does not exist...');
+            this.loggerAdapter.info(scriptMessages.CREATE_DIRECTORY_IF_NOT_EXISTS);
             const dirPath = `${ process.cwd() }/${ env.SWAGGER_OPEN_API_FILE_DIR }`;
             await this.fileSystemAdapter.mkdirIfNotExists(dirPath);
 
-            this.loggerAdapter.info('Writing file...');
+            this.loggerAdapter.info(scriptMessages.WRITE_FILE);
             const filePath = path.join(dirPath, `${ env.SWAGGER_OPEN_API_FILE_NAME }.yaml`);
             const yamlData = this.yamlAdapter.fromObject(swaggerSpec);
 
             await this.fileSystemAdapter.writeFile(filePath, yamlData);
 
-            this.loggerAdapter.info('OpenAPI YAML file generated successfully');
+            this.loggerAdapter.info(scriptMessages.OPENAPI_YAML_FILE_GENERATED_SUCCESSFULLY);
         } 
         catch (error) {
             const errorData = (error as BaseError<{}>).toJSON(); 
-            this.loggerAdapter.error('Failed to generate OpenAPI YAML file', errorData);
+            this.loggerAdapter.error(scriptMessages.FAILED_TO_GENERATE_OPENAPI_YAML_FILE, errorData);
         }
     }
 }
