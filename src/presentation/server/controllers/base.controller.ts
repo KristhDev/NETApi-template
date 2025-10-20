@@ -1,6 +1,10 @@
 import { Request, Response } from 'express';
 
+import { translationAdapter } from '@config/di';
+
 import { httpStatus } from '@application/constants';
+
+import { TranslationAdapterContract } from '@domain/contracts/adapters';
 
 import { JsonResponseUtil } from '@server/utils';
 
@@ -28,6 +32,7 @@ import { JsonResponseUtil } from '@server/utils';
  *                 example: 200
  */
 export abstract class BaseController {
+    protected readonly translationAdapter: TranslationAdapterContract = translationAdapter;
     protected readonly jsonResponse: JsonResponseUtil;
     protected readonly httpStatus = httpStatus;
 
