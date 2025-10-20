@@ -19,6 +19,14 @@ export class LocalizationMiddleware extends BaseMiddleware {
         super();
     }
 
+    /**
+     * Middleware to set the language for the translation adapter.
+     *
+     * @param {Request} req - The request object.
+     * @param {Response} res - The response object.
+     * @param {NextFunction} next - The next function.
+     * @return {void} This function does not return a value.
+     */
     public handle(req: Request, res: Response, next: NextFunction): void {
         const acceptedLanguage = req.headers['accept-language'] || 'en';
 

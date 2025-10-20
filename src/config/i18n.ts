@@ -1,5 +1,6 @@
 import i18next from 'i18next';
 
+/* Locales */
 import en from '@locales/en.json';
 import es from '@locales/es.json';
 

@@ -1,3 +1,4 @@
+/* Errors */
 import { BaseError } from './base.error';
 
 interface FileSystemErrorJson {
