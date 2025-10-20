@@ -1,0 +1,86 @@
+openapi: 3.1.1
+info:
+  title: NETApi-template API Documentation
+  version: 1.0.0
+  description: NETApi-template API Documentation
+  contact:
+    name: KristhDev
+    email: kristhdev@gmail.com
+    url: https://kristhdev.vercel.app
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+  - url: http://localhost:9000
+    description: Local server
+paths:
+  /up:
+    get:
+      summary: Up
+      description: Check if the API is up and running
+      tags:
+        - System
+      responses:
+        '200':
+          $ref: '#/components/responses/UpResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+components:
+  responses:
+    BadRequestResponse:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Bad Request
+              status:
+                type: number
+                example: 400
+    NotFoundResponse:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Not Found
+              status:
+                type: number
+                example: 404
+    InternalServerErrorResponse:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Internal Server Error
+              status:
+                type: number
+                example: 500
+    UpResponse:
+      description: API is up and running
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: API is up and running
+              status:
+                type: number
+                example: 200
+tags:
+  - name: System
+    description: >-
+      This tag is used to group all the system endpoints. Currently, the only
+      system endpoint is /up.
