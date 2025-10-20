@@ -14,5 +14,7 @@ export const env = {
     SWAGGER_CONTACT_EMAIL: get('SWAGGER_CONTACT_EMAIL').required().asString(),
     SWAGGER_CONTACT_URL: get('SWAGGER_CONTACT_URL').required().asString(),
     SWAGGER_LICENSE_URL: get('SWAGGER_LICENSE_URL').required().asString(),
+    SWAGGER_OPEN_API_FILE_DIR: get('SWAGGER_OPEN_API_FILE_DIR').default('docs').asString(),
+    SWAGGER_OPEN_API_FILE_NAME: get('SWAGGER_OPEN_API_FILE_NAME').default('openapi').asString(),
     SWAGGER_OPEN_API_VERSION: get('SWAGGER_OPEN_API_VERSION').required().asString(),
 }
