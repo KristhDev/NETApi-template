@@ -13,6 +13,15 @@ export default swaggerJsDoc({
             title: `${ env.APP_NAME } API Documentation`,
             version: packageJson.version,
             description: `${ env.APP_NAME } API Documentation`,
+            contact: {
+                name: packageJson.author,
+                email: env.SWAGGER_CONTACT_EMAIL,
+                url: env.SWAGGER_CONTACT_URL
+            },
+            license: {
+                name: packageJson.license,
+                url: env.SWAGGER_LICENSE_URL
+            }
         },
         servers: [
             {
