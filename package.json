@@ -6,7 +6,8 @@
   "scripts": {
     "build": "rimraf dist && tsc",
     "dev": "ts-node-dev --respawn --transpile-only --clear index.ts",
-    "docs:generate-openapi:json": "ts-node-dev --transpile-only --clear ./src/scripts/docs/generate-openapi-json.ts",
+    "docs:generate-openapi:json": "rimraf docs/api/openapi.json && ts-node-dev --transpile-only --clear ./src/scripts/docs/generate-openapi-json.ts",
+    "docs:generate-openapi:yaml": "rimraf docs/api/openapi.yaml && ts-node-dev --transpile-only --clear ./src/scripts/docs/generate-openapi-yaml.ts",
     "start": "node ./dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,6 +20,7 @@
     "dotenv": "^17.2.3",
     "env-var": "^7.5.0",
     "express": "^5.1.0",
+    "js-yaml": "^4.1.0",
     "module-alias": "^2.2.3",
     "pino": "^10.1.0",
     "swagger-jsdoc": "^6.2.8",
@@ -27,6 +29,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
+    "@types/js-yaml": "^4.0.9",
     "@types/module-alias": "^2.0.4",
     "@types/node": "^24.8.1",
     "@types/swagger-jsdoc": "^6.0.4",
