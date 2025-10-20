@@ -4,6 +4,7 @@
         "paths": {
             "@application/*": [ "src/application/*" ],
             "@config/*": [ "src/config/*" ],
+            "@docs/*": [ "src/presentation/modules/docs/*" ],
             "@domain/*": [ "src/domain/*" ],
             "@infrastructure/*": [ "src/infrastructure/*" ],
             "@package": [ "./package.json" ],
