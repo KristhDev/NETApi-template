@@ -23,30 +23,66 @@ export class HttpError extends BaseError<HttpErrorJson> {
     }
 
     /**
-     * Returns an HttpError with a status code of 400 (Bad Request).
-     *
-     * @param {string} message The error message.
-     * @return {HttpError} An instance of HttpError with a status code of 400.
+     * @swagger
+     * components:
+     *   responses:
+     *     BadRequestResponse:
+     *       description: Bad Request
+     *       content:
+     *         application/json:
+     *           schema:
+     *             type: object
+     *             properties:
+     *               message:
+     *                 type: string
+     *                 example: Bad Request
+     *               status:
+     *                 type: number
+     *                 example: 400
      */
     public static badRequest(message: string): HttpError {
         return new HttpError(message, httpStatus.BAD_REQUEST);
     }
 
     /**
-     * Returns an HttpError with a status code of 404 (Not Found).
-     *
-     * @param {string} [message] The error message. If not provided, a default message is used.
-     * @return {HttpError} An instance of HttpError with a status code of 404.
+     * @swagger
+     * components:
+     *   responses:
+     *     NotFoundResponse:
+     *       description: Not Found
+     *       content:
+     *         application/json:
+     *           schema:
+     *             type: object
+     *             properties:
+     *               message:
+     *                 type: string
+     *                 example: Not Found
+     *               status:
+     *                 type: number
+     *                 example: 404
      */
     public static notFound(message?: string): HttpError {
         return new HttpError(message || "Sorry, but we couldn't find the requested route.", httpStatus.NOT_FOUND);
     }
 
     /**
-     * Returns an HttpError with a status code of 500 (Internal Server Error).
-     *
-     * @param {string} [message] The error message. If not provided, a default message is used.
-     * @return {HttpError} An instance of HttpError with a status code of 500.
+     * @swagger
+     * components:
+     *   responses:
+     *     InternalServerErrorResponse:
+     *       description: Internal Server Error
+     *       content:
+     *         application/json:
+     *           schema:
+     *             type: object
+     *             properties:
+     *               message:
+     *                 type: string
+     *                 example: Internal Server Error
+     *               status:
+     *                 type: number
+     *                 example: 500
      */
     public static internalServerError(message?: string): HttpError {
         return new HttpError(message || 'An unexpected error occurred. Please try again later.', httpStatus.INTERNAL_SERVER_ERROR);
