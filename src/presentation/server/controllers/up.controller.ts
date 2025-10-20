@@ -12,7 +12,8 @@ export class UpController extends BaseController {
      * @swagger
      * /up:
      *   get:
-     *     summary: Check if the API is up and running
+     *     summary: Up
+     *     description: Check if the API is up and running
      *     tags: [System]
      *     responses:
      *       200:
