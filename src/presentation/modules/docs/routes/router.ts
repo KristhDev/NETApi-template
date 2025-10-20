@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import swaggerUi from 'swagger-ui-express';
-import { apiReference as scalarApiReference } from '@scalar/express-api-reference';
+import scalar from '@scalar/express-api-reference';
 
 import swaggerSpec from '@config/swagger';
 
@@ -22,7 +22,7 @@ docsRouter.get('/docs/swagger', swaggerUi.setup(swaggerSpec, {
     }
 }));
 
-docsRouter.use('/docs/scalar', scalarApiReference({
+docsRouter.use('/docs/scalar', scalar.apiReference({
     cdn: 'https://cdn.jsdelivr.net/npm/@scalar/api-reference',
     url: `/api/docs/openapi.json`
 }));
