@@ -1,0 +1,1 @@
+export * from './generate-openapi-json-file.usecase.contract';
