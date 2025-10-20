@@ -5,10 +5,11 @@ import cors from 'cors';
 import { env } from '@config/env';
 
 /* Contracts */
-import { LoggerAdapterContract } from '@domain/contracts/adapters';
+import { LoggerAdapterContract, TranslationAdapterContract } from '@domain/contracts/adapters';
 
 /* Middlewares */
-import { LogRequestsMiddleware } from './middlewares';
+import { LogRequestsMiddleware } from './middlewares/logs';
+import { LocalizationMiddleware } from './middlewares/localization';
 
 /* Controllers */
 import { NotFoundController, UpController } from './controllers';
@@ -21,7 +22,8 @@ class Server {
     private app: Application;
 
     public constructor(
-        private readonly loggerAdapter: LoggerAdapterContract
+        private readonly loggerAdapter: LoggerAdapterContract,
+        private readonly translationAdapter: TranslationAdapterContract,
     ) {
         this.port = env.APP_PORT;
         this.app = express();
@@ -34,10 +36,12 @@ class Server {
      */
     private middlewares(): void {
         const logRequestsMiddleware = new LogRequestsMiddleware(this.loggerAdapter);
+        const localizationMiddleware = new LocalizationMiddleware(this.translationAdapter);
 
         this.app.use(cors());
         this.app.use(express.json());
         this.app.use((req, res, next) => logRequestsMiddleware.handle(req, res, next));
+        this.app.use((req, res, next) => localizationMiddleware.handle(req, res, next));
     }
 
     /**
