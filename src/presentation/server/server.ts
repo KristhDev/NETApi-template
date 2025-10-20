@@ -13,6 +13,9 @@ import { LogRequestsMiddleware } from './middlewares';
 /* Controllers */
 import { UpController } from './controllers';
 
+/* Routes */
+import { docsRouter } from '@docs/routes';
+
 class Server {
     private readonly port: number;
     private app: Application;
@@ -46,6 +49,7 @@ class Server {
         const upController = new UpController();
 
         this.app.get('/up', (req, res) => upController.handle(req, res));
+        this.app.use('/api', docsRouter);
     }
 
     /**
