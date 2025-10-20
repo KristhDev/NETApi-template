@@ -11,3 +11,5 @@ export interface CreateFileTargetOptions {
     logsDir: string;
     writeLogsFilePerDay: boolean;
 }
+
+export type Locales = 'en' | 'es';
