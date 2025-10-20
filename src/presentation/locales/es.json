@@ -1,0 +1,9 @@
+{
+    "server": {
+        "responses": {
+            "internalServerError": "Ocurrió un error inesperado, por favor intentalo de nuevo más tarde",
+            "notFound": "Lo sentimos, pero no pudimos encontrar la ruta solicitada",
+            "healthCheck": "El servidor está funcionando correctamente"
+        }
+    }
+}
