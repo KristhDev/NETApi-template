@@ -24,6 +24,11 @@ class Server {
         this.app = express();
     }
 
+    /**
+     * Initializes the server middlewares.
+     * 
+     * @return {void} - Returns nothing.
+     */
     private middlewares(): void {
         const logRequestsMiddleware = new LogRequestsMiddleware(this.loggerAdapter);
 
@@ -32,12 +37,34 @@ class Server {
         this.app.use((req, res, next) => logRequestsMiddleware.handle(req, res, next));
     }
 
+    /**
+     * Initializes the server routes.
+     * 
+     * @return {void} - Returns nothing.
+     */
     private routes(): void {
         const upController = new UpController();
 
         this.app.get('/up', (req, res) => upController.handle(req, res));
     }
 
+    /**
+     * Initializes the server for testing.
+     * 
+     * @return {Application} - Returns the initialized server application.
+     */
+    public getAppForTesting(): Application {
+        this.middlewares();
+        this.routes();
+
+        return this.app;
+    }
+
+    /**
+     * Initializes the server for production.
+     * 
+     * @return {void} - Returns nothing.
+     */
     public listen(): void {
         this.middlewares();
         this.routes();
