@@ -49,6 +49,8 @@ export class LogRequestsMiddleware extends BaseMiddleware {
         const requestContextDto = RequestContextDto.fromRequest(req);
 
         this.loggerAdapter.info(`${ requestContextDto.method } ${ requestContextDto.path }`, { request: requestContextDto.toJSON() });
+        if (!req.url.startsWith('/api') || req.url.startsWith('/api/docs')) return next();
+
         res.on('finish', () => this.onFinish(requestContextDto, req, res));
 
         next();
