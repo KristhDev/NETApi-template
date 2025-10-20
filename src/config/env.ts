@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import { get } from 'env-var';
 
-dotenv.config();
+dotenv.config({ quiet: true });
 
 export const env = {
     APP_ENV: get('APP_ENV').required().asEnum([ 'local', 'production', 'testing' ]),
