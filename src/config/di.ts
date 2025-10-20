@@ -1,18 +1,18 @@
 import { env } from './env';
 
 /* Contracts */
-import { FileSystemAdapterContract, LoggerAdapterContract } from '@domain/contracts/adapters';
+import { FileSystemAdapterContract, LoggerAdapterContract, YamlAdapterContract } from '@domain/contracts/adapters';
 import { OpenApiFacadeContract } from '@domain/contracts/facedes/docs';
-import { GenerateOpenApiJsonFileUseCaseContract } from '@domain/contracts/usecases/docs';
+import { GenerateOpenApiJsonFileUseCaseContract, GenerateOpenApiYamlFileUseCaseContract } from '@domain/contracts/usecases/docs';
 
 /* Adapters */
-import { FileSystemAdapter, LoggerAdapter } from '@infrastructure/adapters';
+import { FileSystemAdapter, LoggerAdapter, YamlAdapter } from '@infrastructure/adapters';
 
 /* Facades */
 import { OpenApiFacade } from '@infrastructure/facades/docs';
 
 /* Use Cases */
-import { GenerateOpenApiJsonFileUseCase } from '@application/usecases/docs';
+import { GenerateOpenApiJsonFileUseCase, GenerateOpenApiYamlFileUseCase } from '@application/usecases/docs';
 
 export const fileSystemAdapter: FileSystemAdapterContract = new FileSystemAdapter();
 
@@ -22,6 +22,9 @@ export const loggerAdapter: LoggerAdapterContract = new LoggerAdapter({
     writeLogsFilePerDay: true
 });
 
-export const openApiFacade: OpenApiFacadeContract = new OpenApiFacade(fileSystemAdapter, loggerAdapter);
+export const yamlAdapter: YamlAdapterContract = new YamlAdapter();
+
+export const openApiFacade: OpenApiFacadeContract = new OpenApiFacade(fileSystemAdapter, loggerAdapter, yamlAdapter);
 
 export const generateOpenApiJsonFileUseCase: GenerateOpenApiJsonFileUseCaseContract = new GenerateOpenApiJsonFileUseCase(openApiFacade);
+export const generateOpenApiYamlFileUseCase: GenerateOpenApiYamlFileUseCaseContract = new GenerateOpenApiYamlFileUseCase(openApiFacade);
