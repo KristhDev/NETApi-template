@@ -7,7 +7,7 @@ import { LoggerAdapterContract } from '@domain/contracts/adapters';
 import { RequestContextDto } from '@domain/dtos/logs';
 
 /* Middlewares */
-import { BaseMiddleware } from './base.middleware';
+import { BaseMiddleware } from '../base.middleware';
 
 export class LogRequestsMiddleware extends BaseMiddleware {
     public constructor(
