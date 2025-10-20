@@ -9,3 +9,6 @@
 
 # Node.js
 /node_modules
+
+# Tests
+/tests/coverage
