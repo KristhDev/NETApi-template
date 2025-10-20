@@ -1,5 +1,8 @@
+/* Dependencies */
+import { translationAdapter } from '@config/di';
+
 /* Constants */
-import { httpStatus } from '@application/constants';
+import { httpStatus, serverMessages } from '@application/constants';
 
 /* Errors */
 import { BaseError } from './base.error';
@@ -63,7 +66,8 @@ export class HttpError extends BaseError<HttpErrorJson> {
      *                 example: 404
      */
     public static notFound(message?: string): HttpError {
-        return new HttpError(message || "Sorry, but we couldn't find the requested route.", httpStatus.NOT_FOUND);
+        const defaultMessage = translationAdapter.translate(serverMessages.NOT_FOUND);
+        return new HttpError(message || defaultMessage, httpStatus.NOT_FOUND);
     }
 
     /**
@@ -85,6 +89,7 @@ export class HttpError extends BaseError<HttpErrorJson> {
      *                 example: 500
      */
     public static internalServerError(message?: string): HttpError {
-        return new HttpError(message || 'An unexpected error occurred. Please try again later.', httpStatus.INTERNAL_SERVER_ERROR);
+        const defaultMessage = translationAdapter.translate(serverMessages.INTERNAL_SERVER_ERROR);
+        return new HttpError(message || defaultMessage, httpStatus.INTERNAL_SERVER_ERROR);
     }
 }
