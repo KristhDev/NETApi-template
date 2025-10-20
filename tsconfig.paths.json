@@ -8,9 +8,10 @@
             "@domain/*": [ "src/domain/*" ],
             "@infrastructure/*": [ "src/infrastructure/*" ],
             "@locales/*": [ "src/presentation/locales/*" ],
-            "@package": [ "./package.json" ],
+            "@package": [ "package.json" ],
             "@server": [ "src/presentation/server" ],
-            "@server/*": [ "src/presentation/server/*" ]
+            "@server/*": [ "src/presentation/server/*" ],
+            "@test-setup": [ "jest.setup.ts" ]
         }    
     }
 }
