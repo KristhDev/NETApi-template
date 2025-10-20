@@ -6,6 +6,7 @@ moduleAlias.addAliases({
     '@docs': __dirname + '/src/presentation/modules/docs',
     '@domain': __dirname + '/src/domain',
     '@infrastructure': __dirname + '/src/infrastructure',
+    '@locales': __dirname + '/src/presentation/locales',
     '@package': __dirname + '/package.json',
     '@server': __dirname + '/src/presentation/server'
 });

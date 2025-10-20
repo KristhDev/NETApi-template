@@ -7,6 +7,7 @@
             "@docs/*": [ "src/presentation/modules/docs/*" ],
             "@domain/*": [ "src/domain/*" ],
             "@infrastructure/*": [ "src/infrastructure/*" ],
+            "@locales/*": [ "src/presentation/locales/*" ],
             "@package": [ "./package.json" ],
             "@server": [ "src/presentation/server" ],
             "@server/*": [ "src/presentation/server/*" ]
