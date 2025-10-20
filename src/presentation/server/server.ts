@@ -11,7 +11,7 @@ import { LoggerAdapterContract } from '@domain/contracts/adapters';
 import { LogRequestsMiddleware } from './middlewares';
 
 /* Controllers */
-import { UpController } from './controllers';
+import { NotFoundController, UpController } from './controllers';
 
 /* Routes */
 import { docsRouter } from '@docs/routes';
@@ -47,9 +47,11 @@ class Server {
      */
     private routes(): void {
         const upController = new UpController();
+        const notFoundController = new NotFoundController();
 
         this.app.get('/up', (req, res) => upController.handle(req, res));
         this.app.use('/api', docsRouter);
+        this.app.use((req, res) => notFoundController.handle(req, res));
     }
 
     /**
