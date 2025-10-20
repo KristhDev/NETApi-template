@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, RequestHandler, Response } from 'express';
 
 /* Constants */
 import { httpStatus } from '@application/constants';
@@ -15,5 +15,5 @@ export abstract class BaseMiddleware {
         this.jsonResponse = new JsonResponseUtil();
     }
 
-    public abstract handle(req: Request, res: Response, next: NextFunction): void;
+    public abstract handle(req: Request, res: Response, next: NextFunction): RequestHandler | void;
 }
