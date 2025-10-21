@@ -29,8 +29,9 @@ This repository contains a modern REST API template built with Node.js, Express,
   - [4.1. API Documentation](#41-api-documentation)
   - [4.2. Generating Documentation](#42-generating-documentation)
 - [5. Testing](#5-testing)
-  - [5.1. Running Tests](#51-running-tests)
-  - [5.2. Test Coverage](#52-test-coverage)
+  - [5.1 Testing Branch](#51-testing-branch)
+  - [5.2. Running Tests](#52-running-tests)
+  - [5.3. Test Coverage](#53-test-coverage)
 - [6. Project Structure](#6-project-structure)
 - [7. License](#7-license)
 
@@ -144,7 +145,15 @@ The generated documentation will be saved in the directory specified by the `SWA
 
 ## 5. Testing
 
-### 5.1. Running Tests
+### 5.1 Testing Branch
+The testing branch is used to test the application in a development environment. It is a separate branch from the main branch and is used to test the application in a development environment.
+
+To switch to the testing branch:
+```bash
+git switch testing
+```
+
+### 5.2. Running Tests
 ```bash
 # Run all tests
 pnpm test
@@ -156,7 +165,7 @@ pnpm test:watch
 pnpm test:e2e
 ```
 
-### 5.2. Test Coverage
+### 5.3. Test Coverage
 To generate a test coverage report:
 ```bash
 pnpm test:coverage
