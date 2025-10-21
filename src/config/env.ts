@@ -6,7 +6,7 @@ dotenv.config({ quiet: true });
 export const env = {
     APP_ENV: get('APP_ENV').required().asEnum([ 'local', 'production', 'testing' ]),
     APP_NAME: get('APP_NAME').required().asString(),
-    APP_PORT: get('APP_PORT').required().asPortNumber(),
+    APP_PORT: get('APP_PORT').default(9000).asPortNumber(),
 
     LOGS_DIR: get('LOGS_DIR').default('logs').asString(),
     LOGS_FILE_NAME: get('LOGS_FILE_NAME').default('application').asString(),
