@@ -20,6 +20,16 @@ import { JsonResponseUtil } from '@server/utils';
  *
  * @swagger
  * components:
+ *   parameters:
+ *     AcceptLanguageHeader:
+ *       in: header
+ *       name: Accept-Language
+ *       description: Language for translation
+ *       required: true
+ *       schema:
+ *         type: string
+ *         enum: [en, es]
+ *         default: en
  *   responses:
  *     UpResponse:
  *       description: API is up and running
