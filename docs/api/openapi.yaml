@@ -20,6 +20,8 @@ paths:
       description: Check if the API is up and running
       tags:
         - System
+      parameters:
+        - $ref: '#/components/parameters/AcceptLanguageHeader'
       responses:
         '200':
           $ref: '#/components/responses/UpResponse'
@@ -79,6 +81,18 @@ components:
               status:
                 type: number
                 example: 200
+  parameters:
+    AcceptLanguageHeader:
+      in: header
+      name: Accept-Language
+      description: Language for translation
+      required: true
+      schema:
+        type: string
+        enum:
+          - en
+          - es
+        default: en
 tags:
   - name: System
     description: >-
