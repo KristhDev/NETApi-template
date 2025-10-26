@@ -28,6 +28,11 @@
         "tags": [
           "System"
         ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/AcceptLanguageHeader"
+          }
+        ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/UpResponse"
@@ -119,6 +124,22 @@
               }
             }
           }
+        }
+      }
+    },
+    "parameters": {
+      "AcceptLanguageHeader": {
+        "in": "header",
+        "name": "Accept-Language",
+        "description": "Language for translation",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "enum": [
+            "en",
+            "es"
+          ],
+          "default": "en"
         }
       }
     }
