@@ -18,6 +18,8 @@ export class UpController extends BaseController {
      *     summary: Up
      *     description: Check if the API is up and running
      *     tags: [System]
+     *     parameters:
+     *       - $ref: '#/components/parameters/AcceptLanguageHeader'
      *     responses:
      *       200:
      *         $ref: '#/components/responses/UpResponse'
